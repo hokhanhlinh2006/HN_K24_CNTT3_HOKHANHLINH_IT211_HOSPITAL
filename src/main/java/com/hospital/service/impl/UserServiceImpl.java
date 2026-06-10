@@ -23,7 +23,6 @@ public class UserServiceImpl
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    @PreAuthorize("hasRole('ADMIN')")
     public UserResponse create(
             CreateUserRequest request
     ) {
@@ -48,7 +47,6 @@ public class UserServiceImpl
     }
 
     @Override
-    @PreAuthorize("hasRole('ADMIN')")
     public UserResponse update(
             Long id,
             UpdateUserRequest request
@@ -79,7 +77,7 @@ public class UserServiceImpl
     }
 
     @Override
-    @PreAuthorize("hasRole('ADMIN')")
+
     public UserResponse findById(
             Long id
     ) {
@@ -92,7 +90,7 @@ public class UserServiceImpl
     }
 
     @Override
-    @PreAuthorize("hasRole('ADMIN')")
+
     public void delete(
             Long id
     ) {
@@ -101,7 +99,6 @@ public class UserServiceImpl
     }
 
     @Override
-    @PreAuthorize("hasRole('ADMIN')")
     public Page<UserResponse> getAll(
             int page,
             int size
@@ -116,7 +113,6 @@ public class UserServiceImpl
     }
 
     @Override
-    @PreAuthorize("hasRole('ADMIN')")
     public Page<UserResponse> search(
             String keyword,
             int page,

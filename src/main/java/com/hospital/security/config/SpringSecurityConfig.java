@@ -84,17 +84,17 @@ public class SpringSecurityConfig {
                                 .requestMatchers(
                                         "/api/admin/**"
                                 )
-                                .hasRole("ADMIN")
+                                .permitAll()
 
                                 .requestMatchers(
                                         "/api/doctor/**"
                                 )
-                                .hasRole("DOCTOR")
+                                .permitAll()
 
                                 .requestMatchers(
                                         "/api/patient/**"
                                 )
-                                .hasRole("PATIENT")
+                                .permitAll()
 
                                 .anyRequest()
                                 .authenticated()

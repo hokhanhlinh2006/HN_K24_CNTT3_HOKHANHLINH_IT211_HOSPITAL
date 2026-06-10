@@ -4,6 +4,8 @@ import com.hospital.model.dto.request.RefreshTokenRequest;
 import com.hospital.model.dto.request.UserLogin;
 import com.hospital.model.dto.request.UserRegisterRequest;
 import com.hospital.model.dto.response.JWTResponse;
+import com.hospital.model.dto.response.UserResponse;
+import com.hospital.mapper.UserMapper;
 import com.hospital.model.entity.RefreshToken;
 import com.hospital.model.entity.TokenBlacklist;
 import com.hospital.model.entity.User;
@@ -45,7 +47,7 @@ public class AuthServiceImpl
             blacklistRepository;
 
     @Override
-    public JWTResponse register(
+    public UserResponse register(
             UserRegisterRequest request) {
 
         if (userRepository.existsByUsername(
@@ -72,26 +74,9 @@ public class AuthServiceImpl
                 .isActive(true)
                 .build();
 
-        userRepository.save(user);
-
-        String accessToken =
-                jwtProvider
-                        .generateAccessToken(
-                                user.getUsername());
-
-        RefreshToken refreshToken =
-                refreshTokenService
-                        .createRefreshToken(user);
-
-        return JWTResponse.builder()
-                .accessToken(accessToken)
-                .refreshToken(
-                        refreshToken.getToken())
-                .username(
-                        user.getUsername())
-                .role(
-                        user.getRole().name())
-                .build();
+        return UserMapper.toResponse(
+                userRepository.save(user)
+        );
     }
 
     @Override

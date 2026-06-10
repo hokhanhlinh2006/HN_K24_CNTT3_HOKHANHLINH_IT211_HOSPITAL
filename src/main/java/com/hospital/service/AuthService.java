@@ -4,10 +4,11 @@ import com.hospital.model.dto.request.RefreshTokenRequest;
 import com.hospital.model.dto.request.UserLogin;
 import com.hospital.model.dto.request.UserRegisterRequest;
 import com.hospital.model.dto.response.JWTResponse;
+import com.hospital.model.dto.response.UserResponse;
 
 public interface AuthService {
 
-    JWTResponse register(
+    UserResponse register(
             UserRegisterRequest request
     );
 

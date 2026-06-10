@@ -5,6 +5,7 @@ import com.hospital.model.dto.request.UserLogin;
 import com.hospital.model.dto.request.UserRegisterRequest;
 import com.hospital.model.dto.response.ApiDataResponse;
 import com.hospital.model.dto.response.JWTResponse;
+import com.hospital.model.dto.response.UserResponse;
 import com.hospital.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +18,13 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ApiDataResponse<JWTResponse> register(
+    public ApiDataResponse<UserResponse> register(
             @RequestBody UserRegisterRequest request
     ) {
 
         System.out.println("REGISTER API CALLED");
 
-        return ApiDataResponse.<JWTResponse>builder()
+        return ApiDataResponse.<UserResponse>builder()
                 .success(true)
                 .message("Register success")
                 .data(authService.register(request))
